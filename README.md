@@ -1,346 +1,248 @@
-# Laravel 12 Authentication System
+# Laravel 12 Multi-Role Auth v2.0 🚀
 
-A modern, feature-rich authentication system built with Laravel 12, Livewire 3, and Volt. This project provides a complete authentication solution with role-based access control, user management, and a beautiful responsive UI.
+A modern Laravel 12 application with Livewire, multi-user role authentication, and enhanced social authentication featuring Google and Facebook OAuth.
 
-**Version**: 1.0  
-**Repository**: [https://github.com/laravelgpt/Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth](https://github.com/laravelgpt/Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth)
-
-![Laravel 12](https://img.shields.io/badge/Laravel-12.x-red.svg)
+![Laravel](https://img.shields.io/badge/Laravel-12.x-red.svg)
 ![Livewire](https://img.shields.io/badge/Livewire-3.x-orange.svg)
 ![PHP](https://img.shields.io/badge/PHP-8.2+-blue.svg)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.x-38B2AC.svg)
-![Version](https://img.shields.io/badge/Version-1.0-green.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-## 🚀 Features
+## ✨ Features
 
 ### 🔐 Authentication & Authorization
-- **User Registration & Login**: Complete authentication flow with email verification
-- **Password Reset**: Secure password reset functionality with email tokens
+- **Multi-Role System**: Admin, Staff, User, Customer, Wholeseller, Seller
+- **Social Authentication**: Google OAuth & Facebook OAuth
+- **Role-based Access Control**: Granular permissions with Spatie Permission
 - **Email Verification**: Built-in email verification system
-- **Role-Based Access Control**: Advanced RBAC using Spatie Laravel Permission
-- **Session Management**: Secure session handling with remember me functionality
-- **Password Confirmation**: Additional security layer for sensitive actions
+- **Password Reset**: Secure password reset functionality
 
-### 👥 User Management
-- **Multi-Role System**: Support for admin, staff, user, customer, wholeseller, seller roles
-- **User Profiles**: Complete user profile management
-- **Role Assignment**: Dynamic role assignment and management
-- **Permission System**: Granular permission control
-- **User Statistics**: Comprehensive user analytics and reporting
+### 🎨 Modern UI/UX
+- **Livewire 3**: Real-time, dynamic interfaces
+- **Tailwind CSS**: Modern, responsive design
+- **Flux Components**: Beautiful, accessible UI components
+- **Dark Mode Support**: Toggle between light and dark themes
+- **Mobile Responsive**: Works perfectly on all devices
 
-### 🎨 User Interface
-- **Modern Design**: Beautiful, responsive UI built with Tailwind CSS 4
-- **Dark Mode Support**: Automatic dark mode detection and switching
-- **Mobile Responsive**: Optimized for all device sizes
-- **Livewire Components**: Interactive UI components with real-time updates
-- **Volt Integration**: Modern component architecture
+### 🛠️ Technical Features
+- **Laravel 12**: Latest Laravel framework with PHP 8.2+
+- **SQLite Database**: Lightweight, file-based database
+- **API Ready**: RESTful API endpoints for all features
+- **Rate Limiting**: Built-in protection against abuse
+- **CSRF Protection**: Secure form handling
+- **Caching**: Optimized performance with caching
 
-### 🛡️ Security Features
-- **CSRF Protection**: Built-in CSRF token protection
-- **Rate Limiting**: API and form submission rate limiting
-- **Input Validation**: Comprehensive form validation
-- **SQL Injection Protection**: Eloquent ORM protection
-- **XSS Protection**: Automatic output escaping
-- **Secure Headers**: Security headers implementation
+## 🚀 Quick Start
 
-### 📊 Dashboard & Analytics
-- **Admin Dashboard**: Comprehensive admin interface with statistics
-- **User Dashboard**: Personalized user dashboard
-- **Analytics**: User growth, role distribution, and verification rate tracking
-- **Reports**: Detailed system reports and insights
-- **Real-time Updates**: Live data updates using Livewire
+### Prerequisites
+- PHP 8.2 or higher
+- Composer
+- Node.js & NPM (for frontend assets)
 
-### 🔧 Settings & Configuration
-- **Profile Settings**: User profile management
-- **Password Management**: Secure password change functionality
-- **Appearance Settings**: UI customization options
-- **Account Deletion**: Secure account deletion with confirmation
-- **System Settings**: Admin-level system configuration
+### Installation
 
-### 🚨 Error Handling
-- **Custom Error Pages**: Beautiful error pages for 403, 404, 419, 429, 500
-- **Error Component**: Reusable error page component
-- **Graceful Degradation**: Proper error handling throughout the application
-- **User-Friendly Messages**: Clear error messages and guidance
+#### Option 1: Automated Setup (Recommended)
 
-### 🧪 Testing
-- **Comprehensive Test Suite**: Full test coverage with Pest PHP
-- **Authentication Tests**: Login, registration, password reset tests
-- **Feature Tests**: Dashboard and settings functionality tests
-- **Unit Tests**: Individual component testing
-
-## 📋 Requirements
-
-- **PHP**: 8.2 or higher
-- **Composer**: Latest version
-- **Node.js**: 18 or higher (for frontend assets)
-- **Database**: MySQL, PostgreSQL, or SQLite
-- **Web Server**: Apache, Nginx, or Laravel Sail
-
-## 🛠️ Installation
-
-### 1. Clone the Repository
+**Windows:**
 ```bash
-git clone https://github.com/laravelgpt/Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth.git
-cd Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth
+setup.bat
 ```
 
-### 2. Install Dependencies
+**Linux/Mac:**
 ```bash
-# Install PHP dependencies
-composer install
+chmod +x setup.sh
+./setup.sh
+```
 
-# Install Node.js dependencies
+#### Option 2: Manual Setup
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/laravel-12-multi-role-auth.git
+cd laravel-12-multi-role-auth
+```
+
+2. **Install dependencies**
+```bash
+composer install
 npm install
 ```
 
-### 3. Environment Setup
+3. **Environment setup**
 ```bash
-# Copy environment file
-cp .env.example .env
-
-# Generate application key
+cp ENV_CONFIGURATION.txt .env
 php artisan key:generate
 ```
 
-### 4. Database Configuration
+4. **Database setup**
 ```bash
-# Configure your database in .env file
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel_auth
-DB_USERNAME=root
-DB_PASSWORD=
-
-# Run migrations
+touch database/database.sqlite
 php artisan migrate
-
-# Seed the database with initial data
 php artisan db:seed
 ```
 
-### 5. Build Assets
+5. **Start the application**
 ```bash
-# Build for development
-npm run dev
-
-# Build for production
-npm run build
-```
-
-### 6. Start the Application
-```bash
-# Using Laravel's built-in server
 php artisan serve
-
-# Or using the development script (includes queue and Vite)
-composer run dev
+npm run dev
 ```
 
-## 🏗️ Project Structure
+Visit `http://localhost:8000` to see your application!
+
+## 🔧 Configuration
+
+### Social Authentication Setup
+
+1. **Google OAuth**
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create OAuth 2.0 credentials
+   - Add redirect URI: `http://localhost:8000/auth/google/callback`
+
+2. **Facebook OAuth**
+   - Go to [Facebook Developers](https://developers.facebook.com/)
+   - Create a new app
+   - Add redirect URI: `http://localhost:8000/auth/facebook/callback`
+
+3. **Update .env file**
+```env
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
+
+FACEBOOK_CLIENT_ID=your_facebook_client_id
+FACEBOOK_CLIENT_SECRET=your_facebook_client_secret
+FACEBOOK_REDIRECT_URI=http://localhost:8000/auth/facebook/callback
+```
+
+For detailed setup instructions, see [SOCIAL_AUTH_SETUP.md](SOCIAL_AUTH_SETUP.md).
+
+## 📁 Project Structure
 
 ```
-laravel-12-auth/
+laravel-12-multi-role-auth/
 ├── app/
-│   ├── Actions/              # Action classes
-│   │   ├── Http/
-│   │   │   ├── Controllers/      # Application controllers
-│   │   │   │   ├── Api/         # API controllers
-│   │   │   │   └── Auth/        # Authentication controllers
-│   │   │   └── Middleware/      # Custom middleware
-│   │   ├── Livewire/            # Livewire components
-│   │   ├── Models/              # Eloquent models
-│   │   └── Providers/           # Service providers
-│   ├── config/                  # Configuration files
-│   ├── database/
-│   │   ├── factories/           # Model factories
-│   │   ├── migrations/          # Database migrations
-│   │   └── seeders/            # Database seeders
-│   ├── public/                  # Public assets
-│   ├── resources/
-│   │   ├── css/                # Stylesheets
-│   │   ├── js/                 # JavaScript files
-│   │   └── views/              # Blade templates
-│   │       ├── components/     # Blade components
-│   │       ├── errors/         # Error pages
-│   │       ├── livewire/       # Livewire views
-│   │       └── layouts/        # Layout templates
-│   ├── routes/                 # Route definitions
-│   ├── storage/                # File storage
-│   └── tests/                  # Test files
+│   ├── Http/Controllers/
+│   │   ├── Auth/SocialiteController.php    # Social auth controller
+│   │   └── Api/                            # API controllers
+│   ├── Models/
+│   │   └── User.php                        # User model with roles
+│   └── Livewire/                           # Livewire components
+├── resources/views/
+│   ├── livewire/auth/
+│   │   ├── login.blade.php                 # Login form
+│   │   ├── register.blade.php              # Register form
+│   │   └── social-login.blade.php          # Social auth buttons
+│   └── admin/                              # Admin dashboard views
+├── database/
+│   ├── migrations/                         # Database migrations
+│   └── seeders/                            # Database seeders
+├── routes/
+│   ├── web.php                             # Web routes
+│   └── api.php                             # API routes
+└── config/
+    └── services.php                        # Social auth config
 ```
 
-## 🔐 Authentication Flow
-
-### Registration Process
-1. User fills out registration form
-2. Email verification sent automatically
-3. User verifies email address
-4. Account activated and user logged in
-
-### Login Process
-1. User enters credentials
-2. System validates credentials
-3. Session created with remember me option
-4. User redirected to appropriate dashboard
-
-### Password Reset
-1. User requests password reset
-2. Reset token sent via email
-3. User clicks link and sets new password
-4. Password updated and user logged in
-
-## 👥 Role System
+## 🎯 User Roles & Permissions
 
 ### Available Roles
-- **Admin**: Full system access and user management
-- **Staff**: Administrative access with limited permissions
-- **User**: Standard user access
+- **Admin**: Full system access
+- **Staff**: Administrative access
+- **User**: Basic user access
 - **Customer**: Customer-specific features
-- **Wholeseller**: Wholesale customer features
-- **Seller**: Seller-specific features
+- **Wholeseller**: Wholesale operations
+- **Seller**: Sales operations
 
-### Role Assignment
-```php
-// Assign role to user
-$user->assignRole('admin');
+### Role-based Features
+- **Dashboard Access**: Different dashboards per role
+- **API Endpoints**: Role-specific API access
+- **UI Components**: Role-based interface elements
+- **Social Registration**: Role-specific signup options
 
-// Check user role
-if ($user->hasRole('admin')) {
-    // Admin specific logic
-}
+## 🔌 API Endpoints
 
-// Get user permissions
-$permissions = $user->getAllPermissions();
-```
+### Authentication
+- `POST /api/login` - User login
+- `POST /api/register` - User registration
+- `POST /api/logout` - User logout
 
-## 🎨 UI Components
+### Social Authentication
+- `GET /auth/{provider}` - OAuth redirect
+- `GET /auth/{provider}/callback` - OAuth callback
+- `GET /auth/{provider}/{role}` - Role-specific OAuth
 
-### Error Pages
-The application includes custom error pages for common HTTP status codes:
-- **403**: Access Forbidden
-- **404**: Page Not Found
-- **419**: Page Expired (CSRF token)
-- **429**: Too Many Requests
-- **500**: Internal Server Error
+### User Management
+- `GET /api/users` - List users
+- `POST /api/users` - Create user
+- `PUT /api/users/{id}` - Update user
+- `DELETE /api/users/{id}` - Delete user
 
-### Reusable Components
-- **Error Page Component**: `<x-error-page>` for consistent error handling
-- **Layout Components**: Responsive layout templates
-- **Form Components**: Styled form elements
-- **Navigation Components**: Header and sidebar navigation
+### Dashboard
+- `GET /api/dashboard/stats` - Dashboard statistics
+- `GET /api/dashboard/analytics` - Analytics data
+- `GET /api/dashboard/activity` - Recent activity
+
+## 🎨 Customization
+
+### Styling
+The application uses Tailwind CSS with custom components. You can customize:
+- Colors in `tailwind.config.js`
+- Components in `resources/views/components/`
+- Layouts in `resources/views/layouts/`
+
+### Social Authentication
+Add more providers by:
+1. Adding configuration to `config/services.php`
+2. Updating the UI in `resources/views/livewire/auth/social-login.blade.php`
+3. Adding environment variables to `.env`
+
+### Roles & Permissions
+Modify roles and permissions in:
+- `database/seeders/RoleSeeder.php`
+- `app/Http/Middleware/RoleMiddleware.php`
 
 ## 🧪 Testing
 
-### Running Tests
 ```bash
 # Run all tests
 php artisan test
 
-# Run specific test file
-php artisan test tests/Feature/Auth/AuthenticationTest.php
-
-# Run tests with coverage
-php artisan test --coverage
+# Run specific test suites
+php artisan test --filter=Auth
+php artisan test --filter=Social
 ```
-
-### Test Structure
-- **Feature Tests**: End-to-end functionality testing
-- **Unit Tests**: Individual component testing
-- **Authentication Tests**: Login, registration, password reset
-- **Dashboard Tests**: Dashboard functionality
-- **Settings Tests**: User settings and profile management
-
-## 🔧 Configuration
-
-### Environment Variables
-```env
-# Application
-APP_NAME="Laravel Auth"
-APP_ENV=local
-APP_KEY=base64:...
-APP_DEBUG=true
-APP_URL=http://localhost
-
-# Database
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laravel_auth
-DB_USERNAME=root
-DB_PASSWORD=
-
-# Mail
-MAIL_MAILER=smtp
-MAIL_HOST=mailpit
-MAIL_PORT=1025
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS="hello@example.com"
-MAIL_FROM_NAME="${APP_NAME}"
-
-# Queue
-QUEUE_CONNECTION=sync
-```
-
-### Permission Configuration
-The application uses Spatie Laravel Permission package for role management. Configure roles and permissions in the database seeders.
 
 ## 🚀 Deployment
 
 ### Production Setup
-1. Set `APP_ENV=production` in `.env`
-2. Set `APP_DEBUG=false` for security
-3. Configure production database
-4. Set up proper mail configuration
-5. Configure web server (Apache/Nginx)
-6. Set up SSL certificate
-7. Configure caching and optimization
+1. Update `.env` with production settings
+2. Set `APP_ENV=production`
+3. Configure your database
+4. Set up your OAuth providers with production URLs
+5. Run `php artisan config:cache`
+6. Run `php artisan route:cache`
 
-### Optimization Commands
-```bash
-# Cache configuration
-php artisan config:cache
+### Environment Variables
+```env
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://yourdomain.com
 
-# Cache routes
-php artisan route:cache
+DB_CONNECTION=mysql
+DB_HOST=your_db_host
+DB_DATABASE=your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
 
-# Cache views
-php artisan view:cache
-
-# Optimize autoloader
-composer install --optimize-autoloader --no-dev
+GOOGLE_REDIRECT_URI=https://yourdomain.com/auth/google/callback
+FACEBOOK_REDIRECT_URI=https://yourdomain.com/auth/facebook/callback
 ```
 
-## 📚 API Documentation
+## 📚 Documentation
 
-### Authentication Endpoints
-- `POST /api/login` - User login
-- `POST /api/register` - User registration
-- `POST /api/logout` - User logout
-- `POST /api/forgot-password` - Password reset request
-- `POST /api/reset-password` - Password reset
-
-### User Management Endpoints
-- `GET /api/user` - Get current user
-- `PUT /api/user` - Update user profile
-- `GET /api/users` - List users (admin only)
-- `GET /api/user/stats` - User statistics
-
-## 🔄 Version History
-
-### v1.0 (Current Release)
-- **Initial Release**: Complete Laravel 12 authentication system
-- **Multi-Role Support**: Admin, staff, user, customer, wholeseller, seller roles
-- **Livewire 3 Integration**: Modern reactive components
-- **Tailwind CSS 4**: Latest styling framework
-- **Comprehensive Testing**: Full test coverage with Pest PHP
-- **Error Handling**: Custom error pages and components
-- **Security Features**: CSRF protection, rate limiting, input validation
-- **Dashboard System**: Admin and user dashboards with analytics
-- **Settings Management**: Profile, password, and appearance settings
+- [Laravel Documentation](https://laravel.com/docs)
+- [Livewire Documentation](https://laravel-livewire.com/)
+- [Spatie Permission Documentation](https://spatie.be/docs/laravel-permission)
+- [Social Authentication Setup](SOCIAL_AUTH_SETUP.md)
 
 ## 🤝 Contributing
 
@@ -354,24 +256,20 @@ composer install --optimize-autoloader --no-dev
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
-
-If you encounter any issues or have questions:
-
-1. Check the [Laravel Documentation](https://laravel.com/docs)
-2. Review the [Livewire Documentation](https://livewire.laravel.com/docs)
-3. Search existing issues in the repository
-4. Create a new issue with detailed information
-
 ## 🙏 Acknowledgments
 
-- [Laravel Team](https://laravel.com) for the amazing framework
-- [Livewire Team](https://livewire.laravel.com) for the reactive components
-- [Spatie](https://spatie.be) for the permission package
-- [Tailwind CSS](https://tailwindcss.com) for the utility-first CSS framework
+- [Laravel Team](https://laravel.com/) for the amazing framework
+- [Livewire Team](https://laravel-livewire.com/) for real-time components
+- [Spatie](https://spatie.be/) for the permission package
+- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
+
+## 📞 Support
+
+If you have any questions or need help:
+- Create an issue on GitHub
+- Check the documentation
+- Review the setup guides
 
 ---
 
-**Built with ❤️ using Laravel 12, Livewire 3, and Tailwind CSS**
-
-**Version 1.0** - [Download Latest Release](https://github.com/laravelgpt/Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth/releases/tag/v1.0) 
+**Made with ❤️ using Laravel 12, Livewire 3, and Tailwind CSS** 

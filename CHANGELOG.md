@@ -5,73 +5,158 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2025-01-27
+## [2.0.0] - 2025-06-19
 
-### Added
-- **Initial Release**: Complete Laravel 12 authentication system
-- **Multi-Role Authentication**: Support for admin, staff, user, customer, wholeseller, seller roles
-- **Livewire 3 Integration**: Modern reactive components with Volt
-- **Tailwind CSS 4**: Latest styling framework with dark mode support
-- **Role-Based Access Control**: Advanced RBAC using Spatie Laravel Permission
-- **User Management System**: Complete user profile and role management
-- **Dashboard System**: Admin and user dashboards with analytics
-- **Settings Management**: Profile, password, and appearance settings
-- **Error Handling**: Custom error pages for 403, 404, 419, 429, 500
-- **Reusable Components**: Error page component and layout templates
-- **Security Features**: CSRF protection, rate limiting, input validation
-- **Email Verification**: Built-in email verification system
-- **Password Reset**: Secure password reset functionality
-- **Session Management**: Secure session handling with remember me
-- **API Endpoints**: RESTful API for user management
-- **Comprehensive Testing**: Full test coverage with Pest PHP
-- **Mobile Responsive**: Optimized for all device sizes
-- **Documentation**: Complete README and API documentation
+### 🚀 Added
+- **Social Authentication System**
+  - Google OAuth integration with authentic brand colors
+  - Facebook OAuth integration with official brand styling
+  - Role-based social registration (Seller, Wholeseller)
+  - Automatic email verification for social users
+  - Social provider information storage
 
-### Technical Features
-- Laravel 12 with latest features
-- Livewire 3 for reactive components
-- Tailwind CSS 4 for styling
-- Spatie Laravel Permission for RBAC
-- Pest PHP for testing
-- Vite for asset compilation
-- SQLite as default database
-- GitHub Actions for CI/CD
+- **Enhanced UI/UX**
+  - Beautiful social login buttons with authentic brand colors
+  - Smooth hover animations and transitions
+  - Improved button spacing and typography
+  - Modern rounded corners and shadow effects
+  - Responsive design for all screen sizes
 
-### Security
-- CSRF protection on all forms
-- Rate limiting on authentication endpoints
-- Input validation and sanitization
-- SQL injection protection via Eloquent ORM
-- XSS protection with automatic escaping
-- Secure password hashing
-- Session security
+- **New Controllers & Routes**
+  - `SocialiteController` for handling OAuth flows
+  - Social authentication routes with role support
+  - API endpoints for social authentication
+  - Role-specific OAuth redirects
 
-### Performance
-- Optimized database queries
-- Asset compilation and caching
-- Efficient routing with middleware
-- Minimal JavaScript footprint
-- Fast page loads with Livewire
+- **Database Enhancements**
+  - Social authentication fields (`provider`, `provider_id`)
+  - Migration for social user data
+  - Indexed social provider fields for performance
+
+- **Configuration & Setup**
+  - Comprehensive environment configuration
+  - Automated setup scripts for Windows and Linux/Mac
+  - Detailed social authentication setup guide
+  - Production-ready configuration examples
+
+### 🔧 Changed
+- **Simplified Provider Support**
+  - Removed Twitter, GitHub, Apple, and Telegram providers
+  - Focused on Google and Facebook (most popular providers)
+  - Cleaner, more maintainable codebase
+  - Reduced configuration complexity
+
+- **Updated Documentation**
+  - Comprehensive README with v2.0 features
+  - Social authentication setup guide
+  - API documentation updates
+  - Deployment instructions
+
+- **Enhanced Security**
+  - Secure OAuth callback handling
+  - Rate limiting for social authentication
+  - CSRF protection for all forms
+  - Input validation and sanitization
+
+### 🐛 Fixed
+- Route parameter handling for social authentication
+- Environment variable configuration
+- Database migration issues
+- UI component styling inconsistencies
+
+### 📚 Documentation
+- Added `SOCIAL_AUTH_SETUP.md` with detailed provider setup
+- Updated `README.md` with v2.0 features and quick start guide
+- Created `ENV_CONFIGURATION.txt` for easy environment setup
+- Added setup scripts with clear instructions
+
+### 🛠️ Technical Improvements
+- Optimized social authentication flow
+- Improved error handling and user feedback
+- Enhanced code organization and structure
+- Better separation of concerns
+
+## [1.0.0] - 2025-06-18
+
+### 🚀 Initial Release
+- **Laravel 12 Multi-Role Authentication System**
+  - Complete authentication flow with email verification
+  - Multi-role system (Admin, Staff, User, Customer, Wholeseller, Seller)
+  - Role-based access control with Spatie Permission
+  - Password reset and confirmation functionality
+
+- **Modern UI with Livewire 3**
+  - Real-time, dynamic interfaces
+  - Tailwind CSS for responsive design
+  - Dark mode support
+  - Mobile-optimized layouts
+
+- **Admin Dashboard**
+  - User management interface
+  - Role assignment and management
+  - System analytics and reporting
+  - Settings and configuration
+
+- **API System**
+  - RESTful API endpoints
+  - User management APIs
+  - Dashboard statistics APIs
+  - Role and permission APIs
+
+- **Security Features**
+  - CSRF protection
+  - Rate limiting
+  - Input validation
+  - Secure session handling
+
+- **Testing**
+  - Comprehensive test suite with Pest PHP
+  - Authentication tests
+  - Feature tests
+  - Unit tests
 
 ---
 
-## [Unreleased]
+## Version History
 
-### Planned Features
-- Two-factor authentication (2FA)
-- Social login integration
-- Advanced user analytics
-- Email templates customization
-- API rate limiting improvements
-- Enhanced security features
-- Performance optimizations
-- Additional role types
-- User activity logging
-- Advanced permission system
+- **v2.0.0** - Enhanced social authentication with Google & Facebook OAuth
+- **v1.0.0** - Initial Laravel 12 multi-role authentication system
 
-### Bug Fixes
-- None reported yet
+## Migration Guide
 
-### Security Updates
-- Regular dependency updates
-- Security patches as needed 
+### From v1.0 to v2.0
+
+1. **Update Dependencies**
+   ```bash
+   composer require laravel/socialite
+   ```
+
+2. **Run New Migrations**
+   ```bash
+   php artisan migrate
+   ```
+
+3. **Update Environment Configuration**
+   ```bash
+   cp ENV_CONFIGURATION.txt .env
+   # Update with your OAuth credentials
+   ```
+
+4. **Clear Caches**
+   ```bash
+   php artisan config:clear
+   php artisan route:clear
+   php artisan view:clear
+   ```
+
+5. **Configure Social Authentication**
+   - Set up Google OAuth application
+   - Set up Facebook OAuth application
+   - Update `.env` with credentials
+
+## Support
+
+For issues and questions:
+- Create an issue on GitHub
+- Check the documentation
+- Review the setup guides 
