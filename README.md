@@ -2,10 +2,14 @@
 
 A modern, feature-rich authentication system built with Laravel 12, Livewire 3, and Volt. This project provides a complete authentication solution with role-based access control, user management, and a beautiful responsive UI.
 
+**Version**: 1.0  
+**Repository**: [https://github.com/laravelgpt/Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth](https://github.com/laravelgpt/Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth)
+
 ![Laravel 12](https://img.shields.io/badge/Laravel-12.x-red.svg)
 ![Livewire](https://img.shields.io/badge/Livewire-3.x-orange.svg)
 ![PHP](https://img.shields.io/badge/PHP-8.2+-blue.svg)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.x-38B2AC.svg)
+![Version](https://img.shields.io/badge/Version-1.0-green.svg)
 
 ## 🚀 Features
 
@@ -77,8 +81,8 @@ A modern, feature-rich authentication system built with Laravel 12, Livewire 3, 
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
-cd laravel-12-auth
+git clone https://github.com/laravelgpt/Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth.git
+cd Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth
 ```
 
 ### 2. Install Dependencies
@@ -325,6 +329,19 @@ composer install --optimize-autoloader --no-dev
 - `GET /api/users` - List users (admin only)
 - `GET /api/user/stats` - User statistics
 
+## 🔄 Version History
+
+### v1.0 (Current Release)
+- **Initial Release**: Complete Laravel 12 authentication system
+- **Multi-Role Support**: Admin, staff, user, customer, wholeseller, seller roles
+- **Livewire 3 Integration**: Modern reactive components
+- **Tailwind CSS 4**: Latest styling framework
+- **Comprehensive Testing**: Full test coverage with Pest PHP
+- **Error Handling**: Custom error pages and components
+- **Security Features**: CSRF protection, rate limiting, input validation
+- **Dashboard System**: Admin and user dashboards with analytics
+- **Settings Management**: Profile, password, and appearance settings
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -355,4 +372,6 @@ If you encounter any issues or have questions:
 
 ---
 
-**Built with ❤️ using Laravel 12, Livewire 3, and Tailwind CSS** 
+**Built with ❤️ using Laravel 12, Livewire 3, and Tailwind CSS**
+
+**Version 1.0** - [Download Latest Release](https://github.com/laravelgpt/Laravel-12-with-livewire-starter-kits-Multi-User-Role-Auth/releases/tag/v1.0) 
