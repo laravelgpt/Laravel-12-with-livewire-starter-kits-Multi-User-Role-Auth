@@ -1,0 +1,167 @@
+# =============================================================================
+# LARAVEL 12 MULTI-ROLE AUTH - ENVIRONMENT CONFIGURATION
+# =============================================================================
+# Copy this content to your .env file
+# =============================================================================
+
+APP_NAME="Laravel 12 Multi-Role Auth"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=mailpit
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=mt1
+
+VITE_APP_NAME="${APP_NAME}"
+VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+VITE_PUSHER_HOST="${PUSHER_HOST}"
+VITE_PUSHER_PORT="${PUSHER_PORT}"
+VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
+VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+# =============================================================================
+# SOCIAL AUTHENTICATION PROVIDERS
+# =============================================================================
+
+# Google OAuth
+GOOGLE_CLIENT_ID=your_google_client_id_here
+GOOGLE_CLIENT_SECRET=your_google_client_secret_here
+GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
+
+# Facebook OAuth
+FACEBOOK_CLIENT_ID=your_facebook_client_id_here
+FACEBOOK_CLIENT_SECRET=your_facebook_client_secret_here
+FACEBOOK_REDIRECT_URI=http://localhost:8000/auth/facebook/callback
+
+# =============================================================================
+# ADDITIONAL SERVICES (Optional)
+# =============================================================================
+
+# Postmark (Email Service)
+POSTMARK_TOKEN=your_postmark_token_here
+
+# AWS SES (Email Service)
+AWS_ACCESS_KEY_ID=your_aws_access_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret_key
+AWS_DEFAULT_REGION=us-east-1
+
+# Resend (Email Service)
+RESEND_KEY=your_resend_api_key_here
+
+# Slack Notifications
+SLACK_BOT_USER_OAUTH_TOKEN=your_slack_bot_token_here
+SLACK_BOT_USER_DEFAULT_CHANNEL=#general
+
+# =============================================================================
+# DEVELOPMENT SETTINGS
+# =============================================================================
+
+# Set to false in production
+APP_DEBUG=true
+
+# Database settings for development
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+
+# Cache and session settings
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_CONNECTION=sync
+
+# =============================================================================
+# PRODUCTION SETTINGS (Uncomment and modify for production)
+# =============================================================================
+
+# APP_ENV=production
+# APP_DEBUG=false
+# APP_URL=https://yourdomain.com
+
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=your_database_name
+# DB_USERNAME=your_database_username
+# DB_PASSWORD=your_database_password
+
+# CACHE_DRIVER=redis
+# SESSION_DRIVER=redis
+# QUEUE_CONNECTION=redis
+
+# REDIS_HOST=127.0.0.1
+# REDIS_PASSWORD=null
+# REDIS_PORT=6379
+
+# =============================================================================
+# SETUP INSTRUCTIONS
+# =============================================================================
+
+# 1. Copy this content to a new file named .env in your project root
+# 2. Generate an application key: php artisan key:generate
+# 3. Set up your database: php artisan migrate
+# 4. Seed the database: php artisan db:seed
+# 5. Configure your social authentication providers (see SOCIAL_AUTH_SETUP.md)
+# 6. Update the provider credentials in this .env file
+# 7. Start the development server: php artisan serve
+
+# =============================================================================
+# QUICK START COMMANDS
+# =============================================================================
+
+# php artisan key:generate
+# php artisan migrate
+# php artisan db:seed
+# php artisan serve
+
+# =============================================================================
+# SOCIAL AUTHENTICATION SETUP LINKS
+# =============================================================================
+
+# Google OAuth: https://console.cloud.google.com/
+# GitHub OAuth: https://github.com/settings/developers
+# Facebook OAuth: https://developers.facebook.com/
+# Apple OAuth: https://developer.apple.com/
+# Twitter OAuth: https://developer.twitter.com/
+# Telegram Bot: https://core.telegram.org/bots
+
+# ============================================================================= 

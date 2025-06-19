@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\SocialiteController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -22,6 +23,17 @@ Route::get('/', function () {
 
 // Authentication routes (handled by auth.php)
 require __DIR__.'/auth.php';
+
+// Social Authentication Routes
+Route::prefix('auth')->name('auth.')->group(function () {
+    // Basic social authentication
+    Route::get('{provider}', [SocialiteController::class, 'redirect'])->name('redirect');
+    Route::get('{provider}/callback', [SocialiteController::class, 'callback'])->name('callback');
+    
+    // Role-specific social authentication
+    Route::get('{provider}/{role}', [SocialiteController::class, 'redirectWithRole'])->name('redirect.role');
+    Route::get('{provider}/{role}/callback', [SocialiteController::class, 'callbackWithRole'])->name('callback.role');
+});
 
 // Protected routes
 Route::middleware(['auth', 'verified'])->group(function () {

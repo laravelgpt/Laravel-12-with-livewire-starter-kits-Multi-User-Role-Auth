@@ -92,6 +92,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
         </div>
     </form>
 
+    <!-- Social Authentication with Role Options -->
+    @include('livewire.auth.social-login', ['showRoleOptions' => true])
+
     <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
         {{ __('Already have an account?') }}
         <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
