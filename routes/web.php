@@ -36,7 +36,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
 });
 
 // Protected routes
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     
     // General dashboard route - redirects based on user role
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

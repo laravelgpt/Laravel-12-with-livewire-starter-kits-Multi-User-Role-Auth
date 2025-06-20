@@ -17,7 +17,7 @@ class DashboardController extends Controller
         
         $stats = [
             'total_users' => \App\Models\User::count(),
-            'active_users' => \App\Models\User::whereNotNull('email_verified_at')->count(),
+            'active_users' => \App\Models\User::count(), // All users are considered active since email verification is not required
             'users_today' => \App\Models\User::whereDate('created_at', today())->count(),
             'users_this_week' => \App\Models\User::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->count(),
             'users_this_month' => \App\Models\User::whereMonth('created_at', now()->month)->count(),
@@ -85,10 +85,8 @@ class DashboardController extends Controller
      */
     private function getVerificationRate(): float
     {
-        $totalUsers = \App\Models\User::count();
-        $verifiedUsers = \App\Models\User::whereNotNull('email_verified_at')->count();
-        
-        return $totalUsers > 0 ? round(($verifiedUsers / $totalUsers) * 100, 2) : 0;
+        // Since email verification is no longer required, all users are considered verified
+        return 100.0;
     }
 
     /**

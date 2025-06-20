@@ -37,6 +37,33 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | SMS Services
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the SMS services for OTP delivery.
+    | Supported providers: mock, twilio, aws
+    |
+    */
+
+    'sms' => [
+        'provider' => env('SMS_PROVIDER', 'mock'),
+        
+        'twilio' => [
+            'account_sid' => env('TWILIO_ACCOUNT_SID'),
+            'auth_token' => env('TWILIO_AUTH_TOKEN'),
+            'from_number' => env('TWILIO_FROM_NUMBER'),
+        ],
+        
+        'aws' => [
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'endpoint' => env('AWS_SNS_ENDPOINT', 'https://sns.us-east-1.amazonaws.com'),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Social Authentication Services
     |--------------------------------------------------------------------------
     |

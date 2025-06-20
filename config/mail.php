@@ -109,8 +109,44 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'admin@ufstool.com'),
+        'name' => env('MAIL_FROM_NAME', 'Laravel 12 Auth'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Markdown Mail Settings
+    |--------------------------------------------------------------------------
+    |
+    | If you are using Markdown based email rendering, you may configure your
+    | theme and component paths here, allowing you to customize the design
+    | of the emails. Or, you may simply stick with the Laravel defaults!
+    |
+    */
+
+    'markdown' => [
+        'theme' => env(
+            'MAIL_MARKDOWN_THEME',
+            'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
+        ),
+
+        'paths' => [
+            resource_path('views/vendor/mail'),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Email Verification Settings
+    |--------------------------------------------------------------------------
+    |
+    | Configure settings for email verification to prevent spam classification.
+    |
+    */
+
+    'verification' => [
+        'expire' => env('MAIL_VERIFICATION_EXPIRE', 60), // minutes
+        'throttle' => env('MAIL_VERIFICATION_THROTTLE', 6), // attempts per minute
     ],
 
 ];

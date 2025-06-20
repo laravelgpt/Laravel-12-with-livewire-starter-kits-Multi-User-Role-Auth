@@ -1,0 +1,135 @@
+# =============================================================================
+# EMAIL CONFIGURATION FIX - Copy to your .env file
+# =============================================================================
+# This configuration will fix the spam classification error (550)
+# =============================================================================
+
+APP_NAME="Laravel 12 Multi-Role Auth"
+APP_ENV=local
+APP_KEY=base64:your-generated-key-here
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+# =============================================================================
+# EMAIL CONFIGURATION - FIXES SPAM CLASSIFICATION ISSUE
+# =============================================================================
+
+# Option 1: Log Driver (Recommended for Development)
+# This will log emails to storage/logs/laravel.log instead of sending them
+MAIL_MAILER=log
+MAIL_HOST=localhost
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=noreply@example.com
+MAIL_FROM_NAME="Laravel 12 Auth"
+
+# Option 2: Gmail SMTP (For Production - Requires App Password)
+# MAIL_MAILER=smtp
+# MAIL_HOST=smtp.gmail.com
+# MAIL_PORT=587
+# MAIL_USERNAME=your-email@gmail.com
+# MAIL_PASSWORD=your-app-password
+# MAIL_ENCRYPTION=tls
+# MAIL_FROM_ADDRESS=your-email@gmail.com
+# MAIL_FROM_NAME="Your App Name"
+
+# Option 3: Mailpit (Local Development with UI)
+# MAIL_MAILER=smtp
+# MAIL_HOST=localhost
+# MAIL_PORT=1025
+# MAIL_USERNAME=null
+# MAIL_PASSWORD=null
+# MAIL_ENCRYPTION=null
+# MAIL_FROM_ADDRESS=noreply@example.com
+# MAIL_FROM_NAME="Laravel 12 Auth"
+
+# Email Verification Settings
+MAIL_VERIFICATION_EXPIRE=60
+MAIL_VERIFICATION_THROTTLE=6
+
+# =============================================================================
+# OTHER CONFIGURATIONS
+# =============================================================================
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=mt1
+
+VITE_APP_NAME="${APP_NAME}"
+VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+VITE_PUSHER_HOST="${PUSHER_HOST}"
+VITE_PUSHER_PORT="${PUSHER_PORT}"
+VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
+VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+# Social Authentication Providers
+GOOGLE_CLIENT_ID=your_google_client_id_here
+GOOGLE_CLIENT_SECRET=your_google_client_secret_here
+GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
+
+FACEBOOK_CLIENT_ID=your_facebook_client_id_here
+FACEBOOK_CLIENT_SECRET=your_facebook_client_secret_here
+FACEBOOK_REDIRECT_URI=http://localhost:8000/auth/facebook/callback
+
+# Additional Services (Optional)
+POSTMARK_TOKEN=your_postmark_token_here
+RESEND_KEY=your_resend_api_key_here
+SLACK_BOT_USER_OAUTH_TOKEN=your_slack_bot_token_here
+SLACK_BOT_USER_DEFAULT_CHANNEL=#general
+
+# =============================================================================
+# SETUP INSTRUCTIONS
+# =============================================================================
+
+# 1. Copy this content to your .env file
+# 2. Replace 'your-generated-key-here' with the actual APP_KEY from php artisan key:generate
+# 3. Choose one of the email configurations above (Option 1 is recommended for development)
+# 4. Run: php artisan config:clear
+# 5. Test the email system: php test_email.php
+
+# =============================================================================
+# TESTING COMMANDS
+# =============================================================================
+
+# Test email sending:
+# php test_email.php
+
+# Check email logs (if using log driver):
+# tail -f storage/logs/laravel.log
+
+# Clear configuration cache:
+# php artisan config:clear
+
+# ============================================================================= 

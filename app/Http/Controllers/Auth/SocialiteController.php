@@ -38,7 +38,6 @@ class SocialiteController extends Controller
                     'name' => $socialUser->getName() ?? $socialUser->getNickname(),
                     'email' => $socialUser->getEmail(),
                     'password' => Hash::make(Str::random(16)), // Random password for social users
-                    'email_verified_at' => now(), // Social users are pre-verified
                 ]);
 
                 // Assign default role (customer)
@@ -107,7 +106,7 @@ class SocialiteController extends Controller
                     'name' => $socialUser->getName() ?? $socialUser->getNickname(),
                     'email' => $socialUser->getEmail(),
                     'password' => Hash::make(Str::random(16)),
-                    'email_verified_at' => now(),
+                    // Remove automatic email verification for social users
                 ]);
 
                 // Assign intended role
