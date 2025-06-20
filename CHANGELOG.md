@@ -5,6 +5,72 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2025-01-20
+
+### 🚀 Added
+- **Enhanced Authentication Features**
+  - OTP (One-Time Password) authentication system
+  - SMS OTP authentication with multiple providers (Mock, Twilio, AWS)
+  - Email OTP verification system
+  - Phone number validation with country codes
+  - Comprehensive OTP management and verification
+
+- **New Services & Notifications**
+  - `SmsService` for SMS delivery with provider abstraction
+  - `OtpMail` for email OTP delivery
+  - `VerifyEmailNotification` for custom email verification
+  - Country code configuration with 195+ countries
+
+- **Database Enhancements**
+  - OTP fields (`otp_code`, `otp_expires_at`, `otp_verified`)
+  - SMS OTP fields (`sms_otp_code`, `sms_otp_expires_at`, `sms_otp_verified`)
+  - Phone number field for SMS authentication
+  - Migration files for OTP and SMS features
+
+- **Testing & Documentation**
+  - Comprehensive OTP authentication tests
+  - SMS OTP authentication tests
+  - Email verification tests
+  - Detailed setup documentation for OTP and SMS
+
+### 🔧 Changed
+- **Removed Email Verification for Social Login**
+  - Google and Facebook login users no longer require email verification
+  - Updated User model to remove `MustVerifyEmail` interface
+  - Modified `SocialiteController` to not auto-verify social users
+  - Removed `verified` middleware from protected routes
+  - All users are now treated as verified for statistics
+
+- **Enhanced User Experience**
+  - Immediate access to application after Google login
+  - No email verification prompts for social users
+  - Streamlined authentication flow
+  - Updated profile settings to remove verification UI
+
+- **Controller Updates**
+  - Updated `DashboardController` to handle no email verification
+  - Modified API controllers to treat all users as active
+  - Updated `VerifyEmailController` to redirect to dashboard
+  - Enhanced `UserController` API endpoints
+
+### 🐛 Fixed
+- Email verification blocking social login users
+- Middleware conflicts with social authentication
+- Statistics showing incorrect verification rates
+- UI elements showing verification prompts unnecessarily
+
+### 📚 Documentation
+- Added `OTP_AUTHENTICATION.md` with detailed OTP setup
+- Created `EMAIL_SETUP.md` for email configuration
+- Added `ENV_OTP_CONFIGURATION.md` for OTP environment setup
+- Updated `ENV_EMAIL_FIX.txt` for email troubleshooting
+
+### 🛠️ Technical Improvements
+- Optimized authentication flow for social users
+- Enhanced error handling for OTP systems
+- Improved code organization and separation of concerns
+- Better abstraction for SMS and email services
+
 ## [2.0.0] - 2025-06-19
 
 ### 🚀 Added
@@ -119,6 +185,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History
 
+- **v3.0.0** - Remove email verification for Google login and enhanced OTP/SMS authentication
 - **v2.0.0** - Enhanced social authentication with Google & Facebook OAuth
 - **v1.0.0** - Initial Laravel 12 multi-role authentication system
 
