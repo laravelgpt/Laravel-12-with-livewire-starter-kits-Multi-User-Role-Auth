@@ -17,6 +17,9 @@
 ## Features
 
 - **Authentication and User Roles Management**: Secure authentication with Laravel Sanctum and customizable user roles.
+- **Social Authentication**: Supports OAuth providers for social logins, automatically creating or updating users with social provider information, and assigning roles.
+- **OTP Authentication**: Generates and sends OTP via email and SMS, with verification and expiration checks.
+- **Email Verification**: Sends email verification notifications to ensure account security.
 - **Multi-language Support**: Dynamic translation loader for multiple languages.
 - **Multi-currency Support**: Automatic exchange rate synchronization.
 - **Real-time Broadcasting**: Integration with Pusher/Laravel Echo for real-time updates.
@@ -25,7 +28,7 @@
 - **Accessibility**: ARIA roles for cursor-over elements.
 - **AI Analysis**: AI-driven analysis of cursor paths for UX improvements.
 - **Rate Limiting**: Configurable rate limiting for APIs to prevent abuse.
-- **Secure Data Handling**: Secure validation and storage of sensitive data.
+- **Secure Data Handling**: Uses hashed passwords and secure storage for sensitive data.
 - **Environment Configuration**: Secure management of environment variables.
 
 ## Contributing
