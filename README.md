@@ -16,9 +16,17 @@
 
 ## Features
 
-- Authentication and user roles management.
-- Multi-language and multi-currency support.
-- Real-time broadcasting with Pusher/Laravel Echo.
+- **Authentication and User Roles Management**: Secure authentication with Laravel Sanctum and customizable user roles.
+- **Multi-language Support**: Dynamic translation loader for multiple languages.
+- **Multi-currency Support**: Automatic exchange rate synchronization.
+- **Real-time Broadcasting**: Integration with Pusher/Laravel Echo for real-time updates.
+- **Cursor Tracking**: Advanced cursor tracking for analytics and UX feedback.
+- **Screen Recording**: Optional screen recording for user sessions.
+- **Accessibility**: ARIA roles for cursor-over elements.
+- **AI Analysis**: AI-driven analysis of cursor paths for UX improvements.
+- **Rate Limiting**: Configurable rate limiting for APIs to prevent abuse.
+- **Secure Data Handling**: Secure validation and storage of sensitive data.
+- **Environment Configuration**: Secure management of environment variables.
 
 ## Contributing
 
