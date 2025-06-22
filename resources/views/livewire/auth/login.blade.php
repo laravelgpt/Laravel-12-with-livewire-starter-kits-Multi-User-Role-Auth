@@ -376,11 +376,11 @@ new #[Layout('components.layouts.auth')] class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col gap-6" wire:poll.10s="updateCountdown">
+<div class="flex flex-col gap-6 animate-fade-in" wire:poll.10s="updateCountdown" style="animation: fadeIn 0.6s ease-out;">
     <x-auth-header :title="__('Log in to your account')" :description="__('Use your preferred login method or try alternatives below')" />
 
     <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-auth-session-status class="text-center animate-slide-down" :status="session('status')" style="animation: slideDown 0.5s ease-out;" />
 
     <!-- Tab Navigation - Hidden -->
     {{-- <div class="flex rounded-lg bg-zinc-100 dark:bg-zinc-800 p-1">
@@ -415,7 +415,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <!-- Password Authentication Tab -->
     @if($activeTab === 'password')
-        <form wire:submit="loginWithPassword" class="flex flex-col gap-6">
+        <form wire:submit="loginWithPassword" class="flex flex-col gap-6 animate-slide-up" style="animation: slideUp 0.6s ease-out;">
             <!-- Email Address -->
             <flux:input
                 wire:model="email"
@@ -425,10 +425,11 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 autofocus
                 autocomplete="email"
                 placeholder="email@example.com"
+                class="transform transition-all duration-300 hover:scale-[1.01] focus:scale-[1.01]"
             />
 
             <!-- Password -->
-            <div class="relative">
+            <div class="relative animate-fade-in" style="animation: fadeIn 0.7s ease-out;">
                 <flux:input
                     wire:model="password"
                     :label="__('Password')"
@@ -437,20 +438,21 @@ new #[Layout('components.layouts.auth')] class extends Component {
                     autocomplete="current-password"
                     :placeholder="__('Password')"
                     viewable
+                    class="transform transition-all duration-300 hover:scale-[1.01] focus:scale-[1.01]"
                 />
 
                 @if (Route::has('password.request'))
-                    <flux:link class="absolute end-0 top-0 text-sm" :href="route('password.request')" wire:navigate>
+                    <flux:link class="absolute end-0 top-0 text-sm transition-all duration-200 hover:scale-105" :href="route('password.request')" wire:navigate>
                         {{ __('Forgot your password?') }}
                     </flux:link>
                 @endif
             </div>
 
             <!-- Remember Me -->
-            <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+            <flux:checkbox wire:model="remember" :label="__('Remember me')" class="animate-fade-in" style="animation: fadeIn 0.8s ease-out;" />
 
             <!-- Try Others Option -->
-            <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4">
+            <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4 animate-fade-in" style="animation: fadeIn 1s ease-out;">
                 <div class="text-center">
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Want to try a different login method?</p>
                     <div class="flex flex-col sm:flex-row gap-2 justify-center">
@@ -478,12 +480,16 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 </div>
             </div>
 
-            <div class="flex items-center justify-end">
-                <flux:button variant="primary" type="submit" class="w-full" :disabled="$isLoading">
+            <div class="flex items-center justify-end animate-fade-in" style="animation: fadeIn 0.9s ease-out;">
+                <flux:button variant="primary" type="submit" class="w-full group transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg" :disabled="$isLoading">
                     @if($isLoading)
                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    @else
+                        <svg class="w-5 h-5 mr-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
                     @endif
                     {{ __('Log in') }}
@@ -494,7 +500,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <!-- Email OTP Authentication Tab -->
     @if($activeTab === 'otp')
-        <form wire:submit="{{ $otpSent ? 'loginWithOtp' : 'sendOtp' }}" class="flex flex-col gap-6">
+        <form wire:submit="{{ $otpSent ? 'loginWithOtp' : 'sendOtp' }}" class="flex flex-col gap-6 animate-slide-up" style="animation: slideUp 0.6s ease-out;">
             <!-- Email Address -->
             <flux:input
                 wire:model="email"
@@ -505,13 +511,14 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 autocomplete="email"
                 placeholder="email@example.com"
                 :disabled="$otpSent"
+                class="transform transition-all duration-300 hover:scale-[1.02] focus:scale-[1.02]"
             />
 
             @if(!$otpSent)
                 <!-- Email OTP Information -->
-                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 animate-fade-in" style="animation: fadeIn 0.8s ease-out;">
                     <div class="flex items-start">
-                        <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2 mt-0.5 flex-shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
                         <div class="text-sm">
@@ -527,7 +534,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
             @if($otpSent)
                 <!-- OTP Code -->
-                <div class="space-y-3">
+                <div class="space-y-3 animate-slide-up" style="animation: slideUp 0.7s ease-out;">
                     <flux:input
                         wire:model="otp"
                         :label="__('OTP Code')"
@@ -535,20 +542,20 @@ new #[Layout('components.layouts.auth')] class extends Component {
                         required
                         maxlength="6"
                         placeholder="000000"
-                        class="text-center text-2xl tracking-widest font-mono"
+                        class="text-center text-2xl tracking-widest font-mono transform transition-all duration-300 hover:scale-[1.02] focus:scale-[1.02]"
                         autofocus
                         wire:keydown.enter="loginWithOtp"
                     />
                     
-                    <div class="text-center text-sm text-zinc-600 dark:text-zinc-400 bg-green-50 dark:bg-green-900/20 rounded-lg p-3">
+                    <div class="text-center text-sm text-zinc-600 dark:text-zinc-400 bg-green-50 dark:bg-green-900/20 rounded-lg p-3 animate-fade-in" style="animation: fadeIn 0.8s ease-out;">
                         <div class="flex items-center justify-center mb-1">
-                            <svg class="w-4 h-4 text-green-600 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 text-green-600 dark:text-green-400 mr-2 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                             <span class="font-medium text-green-800 dark:text-green-200">OTP Sent Successfully!</span>
                         </div>
                         <p>We've sent a 6-digit code to <strong class="text-zinc-900 dark:text-zinc-100">{{ $email }}</strong></p>
-                        <p class="text-xs mt-1">The code will expire in <strong class="text-red-600 dark:text-red-400">5 minutes</strong></p>
+                        <p class="text-xs mt-1">The code will expire in <strong class="text-red-600 dark:text-red-400 animate-pulse">5 minutes</strong></p>
                     </div>
                 </div>
 
@@ -577,23 +584,23 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 </div>
 
                 <!-- Try Others Option -->
-                <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4">
+                <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4 animate-fade-in" style="animation: fadeIn 1s ease-out;">
                     <div class="text-center">
                         <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Having trouble with email OTP?</p>
                         
                         <!-- Helpful Tips -->
-                        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4 text-left">
+                        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4 text-left transform transition-all duration-300 hover:scale-[1.02]">
                             <div class="flex items-start">
-                                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2 mt-0.5 flex-shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                                 <div class="text-sm">
                                     <p class="font-medium text-blue-800 dark:text-blue-200 mb-1">Email OTP Tips:</p>
                                     <ul class="text-blue-700 dark:text-blue-300 space-y-1 text-xs">
-                                        <li>• Check your spam/junk folder</li>
-                                        <li>• Ensure email address is correct</li>
-                                        <li>• Wait a few minutes for delivery</li>
-                                        <li>• Try resending if needed</li>
+                                        <li class="flex items-center"><span class="mr-2">•</span> Check your spam/junk folder</li>
+                                        <li class="flex items-center"><span class="mr-2">•</span> Ensure email address is correct</li>
+                                        <li class="flex items-center"><span class="mr-2">•</span> Wait a few minutes for delivery</li>
+                                        <li class="flex items-center"><span class="mr-2">•</span> Try resending if needed</li>
                                     </ul>
                                 </div>
                             </div>
@@ -601,13 +608,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
                         
                         <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-3">Or try these alternative login methods:</p>
                         
-                        <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
                             <button 
                                 type="button" 
                                 wire:click="switchTab('password')" 
-                                class="inline-flex items-center justify-center px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors shadow-sm"
+                                class="group inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95"
                             >
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 mr-2 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                                 </svg>
                                 Try Password Login
@@ -615,9 +622,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
                             <button 
                                 type="button" 
                                 wire:click="switchTab('sms')" 
-                                class="inline-flex items-center justify-center px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors shadow-sm"
+                                class="group inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95"
                             >
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 mr-2 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                 </svg>
                                 Try SMS OTP
@@ -628,7 +635,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                         <div class="mt-4 pt-3 border-t border-zinc-200 dark:border-zinc-600">
                             <p class="text-xs text-zinc-500 dark:text-zinc-400">
                                 Still having issues? 
-                                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Contact Support</a>
+                                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium transition-colors duration-200 hover:text-blue-800 dark:hover:text-blue-300">Contact Support</a>
                             </p>
                         </div>
                     </div>
@@ -641,11 +648,15 @@ new #[Layout('components.layouts.auth')] class extends Component {
             @endif
 
             <div class="flex items-center justify-end">
-                <flux:button variant="primary" type="submit" class="w-full" :disabled="$isLoading">
+                <flux:button variant="primary" type="submit" class="w-full group transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg" :disabled="$isLoading">
                     @if($isLoading)
                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    @else
+                        <svg class="w-5 h-5 mr-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
                     @endif
                     {{ $otpSent ? __('Verify & Log in') : __('Send OTP') }}
@@ -656,7 +667,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <!-- SMS OTP Authentication Tab -->
     @if($activeTab === 'sms')
-        <form wire:submit="{{ $smsOtpSent ? 'loginWithSmsOtp' : 'sendSmsOtp' }}" class="flex flex-col gap-6" wire:click.self="closeDropdown">
+        <form wire:submit="{{ $smsOtpSent ? 'loginWithSmsOtp' : 'sendSmsOtp' }}" class="flex flex-col gap-6 animate-slide-up" style="animation: slideUp 0.6s ease-out;" wire:click.self="closeDropdown">
             <!-- Phone Number with Country Code -->
             <div class="space-y-3">
                 <label class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -669,20 +680,20 @@ new #[Layout('components.layouts.auth')] class extends Component {
                         <button 
                             type="button"
                             wire:click="toggleCountryDropdown"
-                            class="w-full sm:w-auto min-w-[120px] flex items-center justify-between px-4 py-3 text-sm border border-zinc-300 dark:border-zinc-600 rounded-lg sm:rounded-r-none bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors touch-manipulation"
+                            class="group w-full sm:w-auto min-w-[120px] flex items-center justify-between px-4 py-3 text-sm border border-zinc-300 dark:border-zinc-600 rounded-lg sm:rounded-r-none bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 transform hover:scale-[1.02] touch-manipulation"
                         >
                             <div class="flex items-center">
                                 <span class="mr-2 text-lg">{{ $this->getSelectedCountry()['flag'] }}</span>
                                 <span class="font-mono text-sm sm:text-base">{{ $this->getSelectedCountry()['code'] }}</span>
                             </div>
-                            <svg class="w-4 h-4 ml-2 transition-transform {{ $showCountryDropdown ? 'rotate-180' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 ml-2 transition-transform duration-300 {{ $showCountryDropdown ? 'rotate-180' : '' }} group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
 
                         <!-- Country Code Dropdown -->
                         @if($showCountryDropdown)
-                            <div class="absolute z-50 w-full sm:w-80 mt-1 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-600 rounded-lg shadow-xl max-h-72 overflow-y-auto sm:left-0 left-0 sm:right-auto right-0">
+                            <div class="absolute z-50 w-full sm:w-80 mt-1 bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-600 rounded-lg shadow-xl max-h-72 overflow-y-auto sm:left-0 left-0 sm:right-auto right-0 animate-slide-down" style="animation: slideDown 0.3s ease-out;">
                                 <!-- Search Input -->
                                 <div class="p-3 border-b border-zinc-200 dark:border-zinc-600 sticky top-0 bg-white dark:bg-zinc-800 z-10">
                                     <div class="relative">
@@ -693,7 +704,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                                             type="text" 
                                             wire:model.live="countrySearch"
                                             placeholder="Search countries..."
-                                            class="w-full pl-10 pr-3 py-3 text-sm border border-zinc-300 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full pl-10 pr-3 py-3 text-sm border border-zinc-300 dark:border-zinc-600 rounded-md bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 placeholder-zinc-500 dark:placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
                                         >
                                     </div>
                                 </div>
@@ -767,14 +778,14 @@ new #[Layout('components.layouts.auth')] class extends Component {
                         autocomplete="tel"
                         placeholder="{{ $this->getSelectedCountry()['format'] }}"
                         :disabled="$smsOtpSent"
-                        class="flex-1 sm:rounded-l-none min-h-[48px]"
+                        class="flex-1 sm:rounded-l-none min-h-[48px] transform transition-all duration-300 hover:scale-[1.01] focus:scale-[1.01]"
                         :label="false"
                     />
                 </div>
 
                 <!-- Phone Number Preview -->
                 @if($phoneNumber)
-                    <div class="text-sm text-zinc-600 dark:text-zinc-400 break-all bg-zinc-50 dark:bg-zinc-800/50 rounded-lg p-3">
+                    <div class="text-sm text-zinc-600 dark:text-zinc-400 break-all bg-zinc-50 dark:bg-zinc-800/50 rounded-lg p-3 animate-fade-in" style="animation: fadeIn 0.6s ease-out;">
                         <span class="font-medium">Full number:</span> <span class="font-mono text-blue-600 dark:text-blue-400">{{ $this->getFullPhoneNumber() }}</span>
                     </div>
                 @endif
@@ -782,7 +793,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
             @if($smsOtpSent)
                 <!-- SMS OTP Code -->
-                <div class="space-y-3">
+                <div class="space-y-3 animate-slide-up" style="animation: slideUp 0.7s ease-out;">
                     <flux:input
                         wire:model="smsOtp"
                         :label="__('SMS OTP Code')"
@@ -790,12 +801,20 @@ new #[Layout('components.layouts.auth')] class extends Component {
                         required
                         maxlength="6"
                         placeholder="000000"
-                        class="text-center text-xl sm:text-2xl tracking-widest font-mono min-h-[56px]"
+                        class="text-center text-xl sm:text-2xl tracking-widest font-mono min-h-[56px] transform transition-all duration-300 hover:scale-[1.02] focus:scale-[1.02]"
+                        autofocus
+                        wire:keydown.enter="loginWithSmsOtp"
                     />
 
-                    <div class="text-center text-sm text-zinc-600 dark:text-zinc-400 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                        <p class="font-medium mb-1">We've sent a 6-digit code to your phone number.</p>
-                        <p>The code will expire in <strong class="text-red-600 dark:text-red-400">5 minutes</strong>.</p>
+                    <div class="text-center text-sm text-zinc-600 dark:text-zinc-400 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg animate-fade-in" style="animation: fadeIn 0.8s ease-out;">
+                        <div class="flex items-center justify-center mb-1">
+                            <svg class="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="font-medium text-blue-800 dark:text-blue-200">SMS OTP Sent Successfully!</span>
+                        </div>
+                        <p>We've sent a 6-digit code to <strong class="text-zinc-900 dark:text-zinc-100">{{ $this->getFullPhoneNumber() }}</strong></p>
+                        <p class="text-xs mt-1">The code will expire in <strong class="text-red-600 dark:text-red-400 animate-pulse">5 minutes</strong></p>
                     </div>
 
                     <!-- Improved Resend SMS OTP Button -->
@@ -804,7 +823,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                             <button 
                                 type="button" 
                                 wire:click="sendSmsOtp" 
-                                class="inline-flex items-center px-4 py-2 text-sm text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg font-medium transition-colors touch-manipulation"
+                                class="inline-flex items-center px-4 py-2 text-sm text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 touch-manipulation"
                                 :disabled="$isLoading"
                             >
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -825,16 +844,16 @@ new #[Layout('components.layouts.auth')] class extends Component {
             @endif
 
             <!-- Try Others Option -->
-            <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4">
+            <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4 animate-fade-in" style="animation: fadeIn 1s ease-out;">
                 <div class="text-center">
                     <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Having trouble with SMS OTP?</p>
-                    <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
                         <button 
                             type="button" 
                             wire:click="switchTab('password')" 
-                            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors"
+                            class="group inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95"
                         >
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 mr-2 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                             </svg>
                             Try Password Login
@@ -842,9 +861,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
                         <button 
                             type="button" 
                             wire:click="switchTab('otp')" 
-                            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors"
+                            class="group inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95"
                         >
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 mr-2 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                             Try Email OTP
@@ -855,15 +874,19 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
             <!-- Remember Me (only show when SMS OTP is sent) -->
             @if($smsOtpSent)
-                <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+                <flux:checkbox wire:model="remember" :label="__('Remember me')" class="animate-fade-in" style="animation: fadeIn 0.8s ease-out;" />
             @endif
 
-            <div class="flex items-center justify-end">
-                <flux:button variant="primary" type="submit" class="w-full sm:w-auto px-8 py-4 text-sm sm:text-base font-medium min-h-[48px] sm:min-h-[44px]" :disabled="$isLoading">
+            <div class="flex items-center justify-end animate-fade-in" style="animation: fadeIn 0.9s ease-out;">
+                <flux:button variant="primary" type="submit" class="w-full sm:w-auto px-8 py-4 text-sm sm:text-base font-medium min-h-[48px] sm:min-h-[44px] group transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg" :disabled="$isLoading">
                     @if($isLoading)
                         <svg class="animate-spin -ml-1 mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    @else
+                        <svg class="w-5 h-5 mr-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
                     @endif
                     {{ $smsOtpSent ? __('Verify & Log in') : __('Send SMS OTP') }}
