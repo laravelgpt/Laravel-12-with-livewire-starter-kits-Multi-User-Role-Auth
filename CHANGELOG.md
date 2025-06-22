@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2025-01-20
+
+### 🚀 Added
+- **Enhanced Login Experience**
+  - "Try Others" option in Email OTP Authentication tab
+  - "Try Others" option in SMS OTP Authentication tab  
+  - "Try Others" option in Password Authentication tab
+  - Seamless switching between authentication methods
+  - Improved user experience when having trouble with specific login methods
+
+### 🔧 Changed
+- **Login Interface Improvements**
+  - Added helpful prompts for alternative authentication methods
+  - Consistent "Try Others" UI across all authentication tabs
+  - Better visual separation with border dividers
+  - Responsive button layout for mobile and desktop
+  - **Hidden main tab navigation** - users now access different methods through "Try Others" buttons
+  - Updated header description to reflect new navigation approach
+  - **Enhanced Email OTP "Try Others" section** with helpful tips and troubleshooting guidance
+  - Added informative Email OTP authentication description before sending OTP
+  - Improved OTP input field with better styling and auto-focus functionality
+  - Added success message with email address confirmation
+  - Included contact support option for users still having issues
+
+### 🐛 Fixed
+- Enhanced tab switching to properly reset OTP states
+- Improved error handling when switching between authentication methods
+
 ## [3.0.0] - 2025-01-20
 
 ### 🚀 Added

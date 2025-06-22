@@ -377,13 +377,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6" wire:poll.10s="updateCountdown">
-    <x-auth-header :title="__('Log in to your account')" :description="__('Choose your preferred login method')" />
+    <x-auth-header :title="__('Log in to your account')" :description="__('Use your preferred login method or try alternatives below')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
-    <!-- Tab Navigation -->
-    <div class="flex rounded-lg bg-zinc-100 dark:bg-zinc-800 p-1">
+    <!-- Tab Navigation - Hidden -->
+    {{-- <div class="flex rounded-lg bg-zinc-100 dark:bg-zinc-800 p-1">
         <button 
             wire:click="switchTab('password')" 
             class="flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors {{ $activeTab === 'password' ? 'bg-white dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100 shadow-sm' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100' }}"
@@ -411,7 +411,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             </svg>
             SMS OTP
         </button>
-    </div>
+    </div> --}}
 
     <!-- Password Authentication Tab -->
     @if($activeTab === 'password')
@@ -449,6 +449,35 @@ new #[Layout('components.layouts.auth')] class extends Component {
             <!-- Remember Me -->
             <flux:checkbox wire:model="remember" :label="__('Remember me')" />
 
+            <!-- Try Others Option -->
+            <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4">
+                <div class="text-center">
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Want to try a different login method?</p>
+                    <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                        <button 
+                            type="button" 
+                            wire:click="switchTab('otp')" 
+                            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            Try Email OTP
+                        </button>
+                        <button 
+                            type="button" 
+                            wire:click="switchTab('sms')" 
+                            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            Try SMS OTP
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div class="flex items-center justify-end">
                 <flux:button variant="primary" type="submit" class="w-full" :disabled="$isLoading">
                     @if($isLoading)
@@ -478,21 +507,49 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 :disabled="$otpSent"
             />
 
+            @if(!$otpSent)
+                <!-- Email OTP Information -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <div class="text-sm">
+                            <p class="font-medium text-blue-800 dark:text-blue-200 mb-1">Email OTP Authentication</p>
+                            <p class="text-blue-700 dark:text-blue-300">
+                                We'll send a 6-digit security code to your email address. 
+                                The code expires in 5 minutes for your security.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             @if($otpSent)
                 <!-- OTP Code -->
-                <flux:input
-                    wire:model="otp"
-                    :label="__('OTP Code')"
-                    type="text"
-                    required
-                    maxlength="6"
-                    placeholder="000000"
-                    class="text-center text-2xl tracking-widest"
-                />
-
-                <div class="text-center text-sm text-zinc-600 dark:text-zinc-400">
-                    <p>We've sent a 6-digit code to your email address.</p>
-                    <p>The code will expire in <strong>5 minutes</strong>.</p>
+                <div class="space-y-3">
+                    <flux:input
+                        wire:model="otp"
+                        :label="__('OTP Code')"
+                        type="text"
+                        required
+                        maxlength="6"
+                        placeholder="000000"
+                        class="text-center text-2xl tracking-widest font-mono"
+                        autofocus
+                        wire:keydown.enter="loginWithOtp"
+                    />
+                    
+                    <div class="text-center text-sm text-zinc-600 dark:text-zinc-400 bg-green-50 dark:bg-green-900/20 rounded-lg p-3">
+                        <div class="flex items-center justify-center mb-1">
+                            <svg class="w-4 h-4 text-green-600 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span class="font-medium text-green-800 dark:text-green-200">OTP Sent Successfully!</span>
+                        </div>
+                        <p>We've sent a 6-digit code to <strong class="text-zinc-900 dark:text-zinc-100">{{ $email }}</strong></p>
+                        <p class="text-xs mt-1">The code will expire in <strong class="text-red-600 dark:text-red-400">5 minutes</strong></p>
+                    </div>
                 </div>
 
                 <!-- Improved Resend OTP Button -->
@@ -517,6 +574,64 @@ new #[Layout('components.layouts.auth')] class extends Component {
                             Resend available in <span class="font-mono font-bold text-blue-600 dark:text-blue-400">{{ $resendCountdown }}</span> seconds
                         </div>
                     @endif
+                </div>
+
+                <!-- Try Others Option -->
+                <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4">
+                    <div class="text-center">
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Having trouble with email OTP?</p>
+                        
+                        <!-- Helpful Tips -->
+                        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4 text-left">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div class="text-sm">
+                                    <p class="font-medium text-blue-800 dark:text-blue-200 mb-1">Email OTP Tips:</p>
+                                    <ul class="text-blue-700 dark:text-blue-300 space-y-1 text-xs">
+                                        <li>• Check your spam/junk folder</li>
+                                        <li>• Ensure email address is correct</li>
+                                        <li>• Wait a few minutes for delivery</li>
+                                        <li>• Try resending if needed</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-3">Or try these alternative login methods:</p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                            <button 
+                                type="button" 
+                                wire:click="switchTab('password')" 
+                                class="inline-flex items-center justify-center px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors shadow-sm"
+                            >
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                                Try Password Login
+                            </button>
+                            <button 
+                                type="button" 
+                                wire:click="switchTab('sms')" 
+                                class="inline-flex items-center justify-center px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors shadow-sm"
+                            >
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                Try SMS OTP
+                            </button>
+                        </div>
+                        
+                        <!-- Contact Support -->
+                        <div class="mt-4 pt-3 border-t border-zinc-200 dark:border-zinc-600">
+                            <p class="text-xs text-zinc-500 dark:text-zinc-400">
+                                Still having issues? 
+                                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">Contact Support</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             @endif
 
@@ -708,6 +823,35 @@ new #[Layout('components.layouts.auth')] class extends Component {
                     </div>
                 </div>
             @endif
+
+            <!-- Try Others Option -->
+            <div class="border-t border-zinc-200 dark:border-zinc-600 pt-4">
+                <div class="text-center">
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-3">Having trouble with SMS OTP?</p>
+                    <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                        <button 
+                            type="button" 
+                            wire:click="switchTab('password')" 
+                            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                            Try Password Login
+                        </button>
+                        <button 
+                            type="button" 
+                            wire:click="switchTab('otp')" 
+                            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 rounded-lg transition-colors"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            Try Email OTP
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             <!-- Remember Me (only show when SMS OTP is sent) -->
             @if($smsOtpSent)

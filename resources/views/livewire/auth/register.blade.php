@@ -361,7 +361,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     </form>
 
     <!-- Social Authentication with Role Options -->
-    @include('livewire.auth.social-login', ['showRoleOptions' => true])
+    @include('livewire.auth.social-login', ['showRoleOptions' => false])
 
     <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
         {{ __('Already have an account?') }}
