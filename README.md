@@ -1,6 +1,6 @@
-# Laravel 12 Multi-Role Auth v2.0 🚀
+# Laravel 12 Multi-Role Auth v5.0 🚀
 
-A modern Laravel 12 application with Livewire, multi-user role authentication, and enhanced social authentication featuring Google and Facebook OAuth.
+A modern Laravel 12 application with Livewire, multi-user role authentication, enhanced social authentication, and advanced OTP authentication system featuring Email and SMS verification.
 
 ![Laravel](https://img.shields.io/badge/Laravel-12.x-red.svg)
 ![Livewire](https://img.shields.io/badge/Livewire-3.x-orange.svg)
@@ -12,6 +12,7 @@ A modern Laravel 12 application with Livewire, multi-user role authentication, a
 ### 🔐 Authentication & Authorization
 - **Multi-Role System**: Admin, Staff, User, Customer, Wholeseller, Seller
 - **Social Authentication**: Google OAuth & Facebook OAuth
+- **Advanced OTP Authentication**: Email OTP and SMS OTP with enhanced UX
 - **Role-based Access Control**: Granular permissions with Spatie Permission
 - **Email Verification**: Built-in email verification system
 - **Password Reset**: Secure password reset functionality
@@ -22,6 +23,7 @@ A modern Laravel 12 application with Livewire, multi-user role authentication, a
 - **Flux Components**: Beautiful, accessible UI components
 - **Dark Mode Support**: Toggle between light and dark themes
 - **Mobile Responsive**: Works perfectly on all devices
+- **Enhanced Login Experience**: Hidden tab navigation with "Try Others" options
 
 ### 🛠️ Technical Features
 - **Laravel 12**: Latest Laravel framework with PHP 8.2+
@@ -30,6 +32,8 @@ A modern Laravel 12 application with Livewire, multi-user role authentication, a
 - **Rate Limiting**: Built-in protection against abuse
 - **CSRF Protection**: Secure form handling
 - **Caching**: Optimized performance with caching
+- **OTP Management**: Secure OTP generation, delivery, and verification
+- **SMS Integration**: Multiple SMS providers (Mock, Twilio, AWS)
 
 ## 🚀 Quick Start
 
@@ -115,7 +119,52 @@ FACEBOOK_REDIRECT_URI=http://localhost:8000/auth/facebook/callback
 
 For detailed setup instructions, see [SOCIAL_AUTH_SETUP.md](SOCIAL_AUTH_SETUP.md).
 
-## 📁 Project Structure
+### OTP Authentication Setup
+
+The application supports both Email OTP and SMS OTP authentication with enhanced user experience.
+
+#### Email OTP Configuration
+
+1. **Email Provider Setup**
+   - Configure your email provider in `.env`
+   - Supported providers: SMTP, Mailgun, SendGrid, etc.
+
+2. **Update .env file**
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=your_mail_host
+MAIL_PORT=587
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=noreply@yourdomain.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+#### SMS OTP Configuration
+
+1. **SMS Provider Setup**
+   - Choose from Mock, Twilio, or AWS SNS
+   - Configure provider-specific settings
+
+2. **Update .env file**
+```env
+# For Twilio
+SMS_PROVIDER=twilio
+TWILIO_SID=your_twilio_sid
+TWILIO_TOKEN=your_twilio_token
+TWILIO_FROM=your_twilio_number
+
+# For AWS SNS
+SMS_PROVIDER=aws
+AWS_ACCESS_KEY_ID=your_aws_key
+AWS_SECRET_ACCESS_KEY=your_aws_secret
+AWS_DEFAULT_REGION=your_aws_region
+```
+
+For detailed OTP setup instructions, see [OTP_AUTHENTICATION.md](OTP_AUTHENTICATION.md).
+
+## �� Project Structure
 
 ```
 laravel-12-multi-role-auth/
